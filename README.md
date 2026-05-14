@@ -163,7 +163,7 @@ El proyecto fue desarrollado para practicar:
 # 📂 Estructura del proyecto
 
 ```bash
-pirra-sat/
+PlataformaFacturacionElectronica/
 │
 ├── sat/
 │
@@ -203,7 +203,7 @@ pirra-sat/
 ## 1️⃣ Clonar repositorio
 
 ```bash
-git clone https://github.com/usuario/pirra-sat.git
+git clone https://github.com/isairey/PlataformaFacturacionElectronica.git
 ```
 
 ---
@@ -212,7 +212,7 @@ git clone https://github.com/usuario/pirra-sat.git
 
 ```bash
 mkvirtualenv -p python3 pirra-sat
-workon pirra-sat
+workon PlataformaFacturacionElectronica
 ```
 
 ---
@@ -407,7 +407,7 @@ git push origin feature/nueva-funcionalidad
 
 <div align="center">
 
-## Comunidad Pirra SAT
+## Ing. Isai Reyes
 
 Desarrolladores enfocados en automatización fiscal, CFDI y plataformas empresariales modernas.
 

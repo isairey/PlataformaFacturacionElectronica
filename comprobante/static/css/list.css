@@ -1,0 +1,28 @@
+
+#comprobantes-table td.actions {
+    border-bottom: 1px solid #E0E0E0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    min-width: 146px;
+    vertical-align: middle;
+}
+
+.pagination li {
+    margin-right: 4px;
+}
+
+button.more-actions:hover {
+    border-left: 1px solid;
+}
+
+.acciones_masivas {
+    margin-left: -15px;
+}
+
+.client-select-search {
+  width: 250px !important;
+}
+
+#opcionales{
+    margin-left: 5px;
+}

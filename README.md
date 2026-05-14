@@ -1,124 +1,437 @@
-# Pirra - Facturas electronicas AFIP como Zeus manda
+<div align="center">
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Achille_a_Sciro2.JPG/220px-Achille_a_Sciro2.JPG" width="200" />
+<img width="220" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Achille_a_Sciro2.JPG/220px-Achille_a_Sciro2.JPG" />
 
-> Tetis, temiendo por la vida de su hijo si éste fuera llevado con los combatientes, resolvió esconderlo a la vista de los griegos. Así, corrió a Tesalia, donde Aquiles se educaba bajo la tutela del viejo Quirón; y, llevándolo consigo, lo vistió ocultamente con vestimentas de mujer y lo entregó a un confidente suyo, ordenándole que lo condujera a la isla de Esciro, sede del rey Licomedes, y que allí, bajo el nombre de Pirra, como si fuera una hija de ella, lo custodiara ocultamente [...](https://es.wikipedia.org/wiki/Aquiles_en_Esciro_(Hasse))
+# 🇲🇽 Pirra SAT
 
+### Plataforma de facturación electrónica CFDI 4.0 para México 🚀
 
-Configuracion de entorno de desarrollo
---------------------------------------
+<p align="center">
+  <b>Pirra SAT</b> es un sistema moderno de facturación electrónica desarrollado para integrarse con el SAT de México, permitiendo emitir, administrar y validar comprobantes CFDI 4.0 de manera profesional y escalable.
+</p>
 
-1. Instalar paquetes del sistema necesarios
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-Django-3776AB?style=for-the-badge&logo=python&logoColor=white">
+  <img src="https://img.shields.io/badge/PostgreSQL-Database-336791?style=for-the-badge&logo=postgresql&logoColor=white">
+  <img src="https://img.shields.io/badge/CFDI-4.0-green?style=for-the-badge">
+  <img src="https://img.shields.io/badge/SAT-México-006847?style=for-the-badge">
+</p>
 
-        sudo apt-get install openssl libssl-dev swig libtiff5-dev libjpeg8-dev zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev tcl8.5-dev tk8.5-dev libpq-dev redis-server python-dev
-        #si se agrega algo aca agregarlo tambien a las tasks de ansible
-        
-2. Instalar pip y virtualenv
+<p align="center">
+  <a href="#-acerca-del-proyecto">Acerca</a> •
+  <a href="#-características">Características</a> •
+  <a href="#-tecnologías-utilizadas">Tecnologías</a> •
+  <a href="#-instalación">Instalación</a> •
+  <a href="#-roadmap">Roadmap</a>
+</p>
 
-        sudo apt install python3-pip
-        sudo pip3 install virtualenv virtualenvwrapper
+</div>
 
-3. Crear y activar virtualenv
+---
 
-        mkvirtualenv -p python3 pirra
-        workon pirra
+# 🌌 Acerca del proyecto
 
-4. Si mkvirtualenv no funciona entonces
+**Pirra SAT** es una plataforma backend enfocada en la emisión y administración de comprobantes fiscales digitales CFDI 4.0 compatibles con el SAT de México.
 
-        sudo pip3 install virtualenv
-        virtualenv env
-        . env/bin/activate
+Inspirado en la historia mitológica de Aquiles oculto bajo el nombre de **Pirra**, este sistema busca ofrecer una solución robusta y moderna para la automatización fiscal empresarial.
 
-5. Instalar paquetes de python
+El sistema permite:
 
-        pip3 install -r requirements/dev.txt
+- 🧾 Facturación electrónica CFDI
+- 🏢 Gestión multiempresa
+- 📄 Administración de comprobantes fiscales
+- 💰 Control tributario
+- 📊 Reportes administrativos
+- 👥 Gestión de usuarios
+- 🔐 Seguridad y autenticación
+- 📦 Configuración fiscal SAT
 
-6. Copiar template de settings
-        
-        cp pirra_web/settings/dev.template.py pirra_web/settings/dev.py
-        # editar lo que quieran cambiar de settings en pirra_web/settings/dev.py
+El proyecto fue desarrollado para practicar:
 
-7. Instalar requerimientos npm
-        
-        npm install
+- Desarrollo backend con Django
+- Integración SAT México
+- Arquitectura empresarial
+- PostgreSQL
+- Dockerización
+- Automatización DevOps
 
-8. Configurar y Crear BD
+---
 
-    considerar que la versión de postgres que se necesita utilizar es la 9.4
-        
-        sudo apt-get install postgresql
-        sudo -u postgres psql postgres
-        \password postgres # elegir un password y poner el mismo en pirra_web/settings/dev.py
-        #salir de psql (ctrl+d)
-        sudo -u postgres createdb pirra
-        python manage.py migrate
-        
-    O se puede utilizar docker-compose
-        
-       docker-compose up
+# ✨ Características
 
-9. Crear un superusuario
-        
-        python manage.py createsuperuser
+## 🧾 Facturación electrónica CFDI
 
-10. Crear empresa
+- ✅ CFDI 4.0
+- ✅ Facturas electrónicas
+- ✅ Notas de crédito
+- ✅ Notas de débito
+- ✅ Generación XML SAT
+- ✅ Timbrado fiscal
 
-        python manage.py init_empresa [NRO_DOC] [EMPRESA]        
-        
-10. Cargar los datos de aplicacion AFIP (para tener tipos de comprobante, moneda, etc)
+---
 
-        python manage.py loaddata afip/fixtures/initial_data.json 
-        # elegir el schema public
+## 🏢 Gestión empresarial
 
+- 👥 Multiempresa
+- 🏬 Administración de sucursales
+- 📋 Configuración fiscal
+- 🔐 Gestión de accesos
 
-11. Cargar datos del padron de inscripcion a la afip
+---
 
-        python manage.py load_padron --limit 1000 #carga solamente los primeros 1000
+## 📊 Administración
 
-12. Correr el server de prueba
+- 📈 Dashboard administrativo
+- 📄 Historial de comprobantes
+- 💰 Reportes fiscales
+- 📦 Gestión documental
 
-        python manage.py runserver
-        npm run watch
+---
 
-13. Para ver el sistema corriendo entrar a localhost:8000 (no funciona si usan 127.0.0.1:8000)
+## 🔒 Seguridad
 
-Migraciones
------------
+- 🔑 Autenticación de usuarios
+- 🛡️ Protección de endpoints
+- 🔒 Configuración segura
+- 👨‍💻 Roles y permisos
 
-* Generar nuevas migraciones
+---
 
-        python manage.py makemigrations
+## 🐳 DevOps
 
-* Ejecutar migraciones (cada vez que traemos cambios de git):
-        
-        python manage.py migrate 
+- 🐳 Docker Compose
+- ⚙️ Automatización con Ansible
+- 📦 Virtualización con Vagrant
+- 🚀 Deploy local y producción
 
+---
 
-Deploy en hashicorp/bionic64 con Vagrant
-------------------------
+# 🛠️ Tecnologías utilizadas
 
-1. Instalar Ansible y VirtualBox
+## 🌐 Backend
 
-        sudo apt-get install ansible virtualbox
+<p>
+  <img src="https://skillicons.dev/icons?i=python,django" />
+</p>
 
-2. Instalar vagrant según https://www.vagrantup.com/intro/getting-started/install.html
-        
-3. Clonar repositorio
+- Python 3
+- Django
+- Django ORM
+- APIs REST
 
-        git clone https://github.com/fiqus/pirra.git
+---
 
-4. Copiar el template de las variables de deploy al archivo de configuración:
- 
-        cp pirra/deploy/ansible/group_vars/extra-variables.template.yml pirra/deploy/ansible/group_vars/extra-variables.yml
+## 🗄️ Base de datos
 
-5. Completar las variables del archivo 'extra-variables.yml' con la configuración local que se desee.
+<p>
+  <img src="https://skillicons.dev/icons?i=postgresql,redis" />
+</p>
 
-6. Ingresar a la carpeta de deploy ubicada en el root del proyecto
+- PostgreSQL
+- Redis
+- SQL
 
-        cd deploy
+---
 
-7. Levantar el servidor localmente con Vagrant
+## 🎨 Frontend y herramientas
 
-        vagrant up
+<p>
+  <img src="https://skillicons.dev/icons?i=html,css,js,npm" />
+</p>
 
-8. El servidor quedará corriendo en localhost:8080
+- HTML5
+- CSS3
+- JavaScript
+- NPM
+
+---
+
+## 🐳 DevOps
+
+<p>
+  <img src="https://skillicons.dev/icons?i=docker,git,github,ansible" />
+</p>
+
+- Docker
+- Docker Compose
+- Git
+- GitHub
+- Ansible
+- Vagrant
+
+---
+
+# 📂 Estructura del proyecto
+
+```bash
+pirra-sat/
+│
+├── sat/
+│
+├── deploy/
+│   ├── ansible/
+│   └── vagrant/
+│
+├── pirra_web/
+│   ├── settings/
+│   ├── templates/
+│   └── static/
+│
+├── requirements/
+│
+├── manage.py
+│
+└── README.md
+```
+
+---
+
+# ⚡ Instalación
+
+## 📋 Requisitos
+
+- Python 3
+- PostgreSQL
+- Redis
+- Docker
+- Node.js y NPM
+- Virtualenv
+
+---
+
+# 🚀 Configuración del proyecto
+
+## 1️⃣ Clonar repositorio
+
+```bash
+git clone https://github.com/usuario/pirra-sat.git
+```
+
+---
+
+## 2️⃣ Crear entorno virtual
+
+```bash
+mkvirtualenv -p python3 pirra-sat
+workon pirra-sat
+```
+
+---
+
+## 3️⃣ Instalar dependencias Python
+
+```bash
+pip3 install -r requirements/dev.txt
+```
+
+---
+
+## 4️⃣ Configurar variables de entorno
+
+```bash
+cp pirra_web/settings/dev.template.py pirra_web/settings/dev.py
+```
+
+---
+
+## 5️⃣ Instalar dependencias NPM
+
+```bash
+npm install
+```
+
+---
+
+## 6️⃣ Configurar base de datos
+
+```bash
+sudo -u postgres createdb pirra_sat
+```
+
+---
+
+## 7️⃣ Ejecutar migraciones
+
+```bash
+python manage.py migrate
+```
+
+---
+
+## 8️⃣ Crear superusuario
+
+```bash
+python manage.py createsuperuser
+```
+
+---
+
+## 9️⃣ Registrar empresa SAT
+
+```bash
+python manage.py init_empresa [RFC] [EMPRESA]
+```
+
+---
+
+## 🔟 Cargar configuraciones fiscales SAT
+
+```bash
+python manage.py loaddata sat/fixtures/initial_data.json
+```
+
+---
+
+## 1️⃣1️⃣ Ejecutar servidor
+
+```bash
+python manage.py runserver
+npm run watch
+```
+
+---
+
+## 🌐 Acceder al sistema
+
+Sistema:
+
+```bash
+http://localhost:8000
+```
+
+---
+
+# 🐳 Docker
+
+## 🚀 Ejecutar con Docker Compose
+
+```bash
+docker-compose up
+```
+
+---
+
+# ⚙️ Deploy con Vagrant
+
+## 📦 Requisitos
+
+- Ansible
+- VirtualBox
+- Vagrant
+
+---
+
+## 🚀 Levantar entorno
+
+```bash
+cd deploy
+vagrant up
+```
+
+---
+
+## 🌐 Acceso
+
+```bash
+http://localhost:8080
+```
+
+---
+
+# 📸 Vista previa
+
+<div align="center">
+
+<img width="1000" src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?q=80&w=1200&auto=format&fit=crop" />
+
+</div>
+
+---
+
+# 🧠 Objetivos del proyecto
+
+## 🎯 Aprender y practicar
+
+- Django
+- PostgreSQL
+- CFDI 4.0
+- Integración SAT
+- Docker
+- Redis
+- DevOps
+- Arquitectura backend
+
+---
+
+# 🚧 Roadmap
+
+## 🔮 Próximas mejoras
+
+- 📊 Dashboard avanzado
+- ☁️ Deploy cloud
+- 📱 Diseño responsive
+- 🤖 Automatización fiscal
+- 🔔 Notificaciones inteligentes
+- 📄 Exportación avanzada de comprobantes
+
+---
+
+# 🤝 Contribuciones
+
+Las contribuciones son bienvenidas ❤️
+
+## Cómo contribuir
+
+1. Fork del proyecto
+
+```bash
+git checkout -b feature/nueva-funcionalidad
+```
+
+2. Commit
+
+```bash
+git commit -m "✨ Nueva funcionalidad"
+```
+
+3. Push
+
+```bash
+git push origin feature/nueva-funcionalidad
+```
+
+4. Pull Request 🚀
+
+---
+
+# 👨‍💻 Autor
+
+<div align="center">
+
+## Comunidad Pirra SAT
+
+Desarrolladores enfocados en automatización fiscal, CFDI y plataformas empresariales modernas.
+
+</div>
+
+---
+
+# 🌟 Apoya el proyecto
+
+⭐ Dale una estrella  
+🍴 Haz fork  
+📢 Comparte el proyecto
+
+---
+
+# 📜 Licencia
+
+Proyecto educativo y empresarial desarrollado para prácticas de integración SAT, automatización fiscal y sistemas modernos de facturación electrónica CFDI 4.0.
+
+---
+
+<div align="center">
+
+### 🇲🇽 Pirra SAT — facturación electrónica CFDI como los dioses mandan ⚡
+
+</div>

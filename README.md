@@ -1,6 +1,5 @@
 <div align="center">
 
-<img width="220" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Achille_a_Sciro2.JPG/220px-Achille_a_Sciro2.JPG" />
 
 # 🇲🇽 Pirra SAT
 
